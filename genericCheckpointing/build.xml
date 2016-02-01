@@ -1,0 +1,62 @@
+<project name="genericCheckpointing" default="compile" basedir=".">
+	<property name="build.compiler" value="modern" />
+	<property name="src" value="src" />
+	<property name="BUILD" value="build" />
+	<property name="classes" value="${BUILD}/classes" />
+	<property name="project.dir" value="${project}" />
+	<property name="main-class" value="genericCheckpointing.driver.Driver" />
+
+	<!-- target compile -->
+	<target name="compile" depends="genericCheckpointing">
+	</target>
+
+	<!-- target clean : deletes declared file. -->
+	<target name="clean">
+		<delete dir="${BUILD}" />
+		<delete file="${basedir}/Soham_Rohankar_assign5.tar.gz" />
+	</target>
+
+	<!-- Prepare target directories -->
+	<target name="prepare">
+		<mkdir dir="${BUILD}" />
+		<mkdir dir="${classes}" />
+	</target>
+
+
+	<!-- ** means all subdirectories as well -->
+	<!-- * means all files in the current directory -->
+	<!-- for just java files use *.java -->
+	<target name="genericCheckpointing" depends="clean,prepare">
+		<javac srcdir="${src}" includes="genericCheckpointing/**" excludes="**/package.html"
+			destdir="${classes}" classpath="${classes}" debug="on" optimize="on"
+			deprecation="off" />
+	</target>
+
+	<!-- target jar: create jar file. -->
+	<target name="jar">
+		<mkdir dir="${BUILD}/jar" />
+		<jar destfile="${BUILD}/jar/genericCheckpointing.jar" basedir="${BUILD}/classes">
+			<manifest>
+				<attribute name="Main-Class" value="genericCheckpointing.driver.Driver" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="run" depends="jar">
+		<java classname="${main-class}">
+			<classpath>
+				<path location="${BUILD}/jar/genericCheckpointing.jar" />
+			</classpath>
+			<arg value="${arg1}" />
+			<arg value="${arg2}" />
+			<arg value="${arg3}" />
+			
+		</java>
+	</target>
+
+	<!-- Create tar.gz file -->
+	<target name="tarzip" depends="clean">
+		<tar destfile="${basedir}/Soham_Rohankar_Assign4_Final.tar.gz" basedir="../."
+			includes="genericCheckpointing/**" compression="gzip" />
+	</target>
+</project>

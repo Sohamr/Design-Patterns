@@ -1,0 +1,62 @@
+
+<project name="myComputerManual" default="compile" basedir=".">
+	<property name="build.compiler" value="modern" />
+	<property name="src" value="src" />
+	<property name="BUILD" value="build" />
+	<property name="classes" value="${BUILD}/classes" />
+	<property name="project.dir" value="${project}" />
+	<property name="main-class" value="myComputerManual.driver.Driver" />
+
+	<!-- target compile -->
+	<target name="compile" depends="myComputerManual">
+	</target>
+
+	<!-- target clean : deletes declared file. -->
+	<target name="clean">
+		<delete dir="${BUILD}" />
+		<delete file="${basedir}/Soham_Rohankar_assign2.tar.gz" />
+	</target>
+
+	<!-- Prepare target directories -->
+	<target name="prepare">
+		<mkdir dir="${BUILD}" />
+		<mkdir dir="${classes}" />
+	</target>
+
+
+	<!-- ** means all subdirectories as well -->
+	<!-- * means all files in the current directory -->
+	<!-- for just java files use *.java -->
+	<target name="myComputerManual" depends="clean,prepare">
+		<javac srcdir="${src}" includes="myComputerManual/**" excludes="**/package.html"
+			destdir="${classes}" classpath="${classes}" debug="on" optimize="on"
+			deprecation="off" />
+	</target>
+
+	<!-- target jar: create jar file. -->
+	<target name="jar">
+		<mkdir dir="${BUILD}/jar" />
+		<jar destfile="${BUILD}/jar/myComputerManual.jar" basedir="${BUILD}/classes">
+			<manifest>
+				<attribute name="Main-Class" value="myComputerManual.driver.Driver" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="run" depends="jar">
+		<java classname="${main-class}">
+			<classpath>
+				<path location="${BUILD}/jar/myComputerManual.jar" />
+			</classpath>
+			<arg value="${Debug}" />
+		</java>
+	</target>
+
+	<!-- Create tar.gz file -->
+	<target name="tarzip" depends="clean">
+		<tar destfile="${basedir}/Soham_Rohankar_assign2.tar.gz" basedir="../."
+			includes="myComputerManual/**" compression="gzip" />
+	</target>
+
+</project>
+
