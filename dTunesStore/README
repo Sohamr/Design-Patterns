@@ -1,0 +1,150 @@
+CS542 Design Patterns
+Fall 2014
+PROJECT <PROJECT 1> README FILE
+
+Due Date: <Tuesday, September 30, 2014>
+Submission Date: <Tuesday, September 30, 2014>
+Grace Period Used This Project: <0> Days
+Grace Period Remaining: <0> Days
+Author(s): <Soham Rohankar>
+e-mail(s): <srohank1@binghamton.edu> 
+
+
+PURPOSE:
+
+ The basic idea of the project is to create a Music Store application, which 
+ stores Music records and does a search on them. The search is done by reading
+ a search file using multiple threads and if record found, its stored in a 
+ class and then displayed to console afterwards.
+ For this project, we are creating a Music Store application. It contains a 
+ MusicInfo class which stores music records in the format:
+ Song_name Album_name  Singer_name
+ We're supposed to use this class object to store many records in a data 
+ structure defined in MusicStore class.
+ Used MusicInfo array and Hashmap to store the records in MusicStore class.
+ Hashmap contains 3 times the records, hence the program is space complex.
+ But using Hashmap, the data is searched in O(1) time.
+ Also my program can only store up to 1000 records in MusicStore, as the
+ requirement was not much. The limit can be extended manually. 
+ Have used synchronized keyword to ensure thread safety where-ever needed.
+ PopulateWorker class is used to read data from data file using FileProcessor
+ class and store in MusicStore.
+ SearchWorker class is a threaded class which does the searching by reading 
+ Search file using FileProcessor class and if record found stores the record
+ in Results class.
+ Result class uses a vector to store the MusicInfo objects, as it is 
+ thread safe and can handle storage dynamically.
+ 
+PERCENT COMPLETE:
+
+ I believe I have completed 100% of this project.
+
+PARTS THAT ARE NOT COMPLETE:
+
+ I believe the project is complete.
+
+BUGS:
+
+ None.
+
+None
+FILES:
+
+  Below are the files that are necessary for the project to run:
+  
+  
+  DataFile.txt - Contains the Music records
+  SearchFile.txt - Contains the words to search in the MusicStore
+  build.xml - The ANT uses this file to compile and run the project
+  CreateSearchWorker.java - Creates N number of SearchWorkerThreads
+  MusicInfo.java - Stores the music records
+  PopulateWorker.java - Reads the DataFile and stores records in MusicStore
+  FileProcessor.java - Reads the file and return the read line.
+  MusicStore.java - Contains a data structure (HashMap) to store MusicInfo
+	objects and method to search and display the data.
+  SearchWorker.java - Implements Runnable Interface, the run method reads 
+	from file (using FileProcessor), searches in MusicStore and stores in 
+	Result class
+  Driver.java - The driver program to run the whole program.
+  IResult.java - Interface Result has functions to store and display data
+  LogType.java - Enum class to store Debug values
+  Logger.java  - Writes to stdout, depending upon the global debug value
+  Results.java - To store the records found in MusicStore
+  README.txt - The file you are currently reading
+  
+SAMPLE OUTPUT:
+
+bingsuns2% ant run -Darg0=DataFile.txt -Darg1=SearchFile.txt -Darg2=5 -Darg3=1
+Buildfile: build.xml
+
+jar:
+
+run:
+     [java]  SEARCH_RESULTS Song Song_BlO6 from Album Album_BlO6, Sung by Singer_BlO6
+     [java]  SEARCH_RESULTS Song Song_idiv from Album Album_idiv, Sung by Singer_idiv
+     [java]  SEARCH_RESULTS Song Song_5ug4 from Album Album_5ug4, Sung by Singer_5ug4
+     [java]  SEARCH_RESULTS Song Song_4uoO from Album Album_4uoO, Sung by Singer_4uoO
+     [java]  SEARCH_RESULTS Song Song_Mcoa from Album Album_Mcoa, Sung by Singer_Mcoa
+     [java]  SEARCH_RESULTS Song Song_gzdJ from Album Album_gzdJ, Sung by Singer_gzdJ
+     [java]  SEARCH_RESULTS Song Song_DvKZ from Album Album_DvKZ, Sung by Singer_DvKZ
+     [java]  SEARCH_RESULTS Song Song_vFDK from Album Album_vFDK, Sung by Singer_vFDK
+     [java]  SEARCH_RESULTS Song Song_kPav from Album Album_kPav, Sung by Singer_kPav
+     [java]  SEARCH_RESULTS Song Song_RYHM from Album Album_RYHM, Sung by Singer_RYHM
+     [java]  SEARCH_RESULTS Song Song_qnV8 from Album Album_qnV8, Sung by Singer_qnV8
+ 
+BUILD SUCCESSFUL
+Total time: 1 second
+bingsuns2% 
+
+
+TO COMPILE:
+
+	Make sure you are in dTunesStore folder (In the folder containing build.xml)
+
+	cd Soham_Rohankar_assign1/dTunesStore/
+		
+	Please Compile as:
+		ant compile
+		
+		or 
+		
+		ant clean
+		ant compile
+		
+TO RUN:
+
+  To run the program, it needs 4 arguments.
+
+	arg0 = DataFile - File which contains the Music records
+	arg1 = SearchFile - File which contains the words to search in the MusicStore
+	arg2 = Number of Threads - Between 1-5
+	arg3 = Debug value - Between 0 - 4
+
+  Please run as: ant run -Darg0=<Data file name> -Darg1=<Search File name> 
+						 -Darg2=<Number of Threads> -Darg0=<Debug value>
+						 
+  Example : ant run -Darg0=DataFile.txt -Darg1=SearchFile.txt -Darg2=5 -Darg3=1
+
+EXTRA CREDIT:
+  Wrote a javascript to generate music records to store in data file, as well as
+  in search file.
+  
+  Go to /src/dTunesStore/util directory
+  
+  Run the "MusicInfoGenerator.html" (Need a browser to run)
+  Copy the lines below "Data File" until "Search File" and save in a text file like datafile.txt
+  Now copy the lines below "Search File" and save in a text file like searchfile.txt
+
+
+BIBLIOGRAPHY:
+
+This serves as evidence that we are in no way intending Academic Dishonesty.
+<Soham Rohankar>
+
+  * http://www.oracle.com/technetwork/java/index.html
+  * http://stackoverflow.com/
+  * http://www.tutorialspoint.com/
+  
+
+ACKNOWLEDGEMENT:
+
