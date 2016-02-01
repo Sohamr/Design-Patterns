@@ -1,0 +1,178 @@
+CS542 Design Patterns
+Fall 2014
+PROJECT <PROJECT 2> README FILE
+
+Due Date: <Thursday, October 16, 2014>
+Submission Date: <Thursday, October 16, 2014>
+Grace Period Used This Project: <0> Days
+Grace Period Remaining: <0> Days
+Author(s): <Soham Rohankar>
+e-mail(s): <srohank1@binghamton.edu> 
+
+
+PURPOSE:
+
+ The basic idea of the project is to create an application to generate a Manual.
+ This is being accomplished using Factory Method Pattern and Abstract Factory 
+ Pattern. The manual package contains classes using Factory Method Pattern. 
+ ManualStore is an abstract class which contains the factory method, and is 
+ inherited by ComputerManualStore class which has createManual method that 
+ initializes ComponentFactoryI object and creates a new ComputerManual 
+ object.
+ Manual class is also an abstract class that is inherited by ComputerManual
+ class which contains methods for creating, organizing and printing the manual.
+ The component package contains classes using  Abstract Factory Pattern.
+ ComponentAbstractFactory is an abstract factory which is a parent class of
+ Component class. The classes like CPU, RAM extends Component class, and CPU in
+ turn is inherited by INTELCPU. And similarly the other 15 components are 
+ created.
+ The driver class creates a UserMenu object and calls the displayMenu() method.
+ This method displays the main menu. User can select the components as the wish.
+ Once all components are selected, they can select "Buy" option to get Manual.
+ Then a ComputerManualStore object is created. and orderManual method is called.
+ This method returns a Manual object. And then it prints the manual.
+
+PERCENT COMPLETE:
+
+ I believe I have completed 100% of this project.
+
+PARTS THAT ARE NOT COMPLETE:
+
+ I believe the project is complete.
+
+BUGS:
+
+ None.
+
+
+FILES:
+
+  Below are the files that are necessary for the project to run:
+  
+ Package myComputerManual.choice - Contains enums
+1.) Choices.java	Contains enum for specific components
+					like Intel_CPU
+2.) MainMenu.java	Contains enum for generic components
+					like CPU, RAM
+					
+Package myComputerManual.driver 
+1.) Driver.java - The driver program to run the whole program.
+
+Package myComputerManual.manual - Factory Method Pattern
+1.) ComputerManual.java 
+2.) ComputerManualStore.java
+3.) Manual.java
+4.) ManualStore.java
+
+Package myComputerManual.util
+1.) Logger.java - Writes to stdout depending upon the global debug value
+2.) LogType.java - Enum class to store Debug values
+	NO_OUTPUT(0),PRINT_MANUAL(1),INDEX_ENTRY(2),
+	LIST_FIGURES_ENTRY(3),PAGES_ENTRY(4),GLOSSARY_ENTRY(5),CONSTRUCTOR(6);
+3.) UserMenu.java - Class to display menu and take user input
+
+Package myComuterManual.component - Abstract Factory Pattern
+1.) AMDCPU.java
+2.) Component.java
+3.) ComponentAbstractFactory.java
+4.) ComponentFactoryI.java
+5.) CPU.java
+6.) DISK_1TB.java
+7.) DISK_2TB.java
+8.) DISK.java
+9.) GraphicsCard_INTEL.java
+10.) GraphicsCard_NVIDIA.java
+11.) GraphicsCard.java
+12.) INTELCPU.java
+13.) Monitor_17.java
+14.) Monitor_20.java
+15.) Monitor.java
+16.) MyComponent.java
+17.) OperatinSystem_Win_10.java
+18.) OperatinSystem_Win_8.java
+19.) OperatinSystem.java
+20.) OpticalDrive_LG.java
+21.) OpticalDrive_Samsung.java
+22.) OpticalDrive.java
+23.) RAM.java
+24.) RAM16GB.java
+25.) RAM8GB.java
+26.) SystemSupport_1Yr.java
+27.) SystemSupport_3Yr.java
+28.) SystemSupport.java
+
+build.xml - The ANT uses this file to compile and run the project
+README - The file you are currently reading
+  
+SAMPLE OUTPUT:
+
+bingsuns2% ant run -DDebug=1
+Buildfile: build.xml
+
+jar:
+    [mkdir] Created dir: /u0/users/0/srohank1/DP/dp2/myComputerManual/build/jar
+    [jar] Building jar: /u0/users/0/srohank1/DP/dp2/myComputerManual/build/jar/
+						myComputerManual.jar
+
+run:
+
+     [java]      **********User Manual**********
+
+     [java]     **********Index**********
+     [java] 1.) AMD FX-8350 Eight-Core CPU                      1
+     [java] 2.) Intel i5-4770 processor quad-core               4
+     [java] 3.) 1TB 7200 RPM SATA Hard Drive            		7
+     [java] 4.) Intel HD Graphics                               11
+     [java] 5.) 64 Bit Windows 10 Operating System              14
+     [java] 6.) HP  20" Widescreen LCD               			18
+
+
+
+ 
+BUILD SUCCESSFUL
+Total time: 25 second
+bingsuns2% 
+
+
+TO COMPILE:
+
+	Make sure you are in myComputerManual folder (In the folder containing build.xml)
+
+	cd Soham_Rohankar_assign2/myComputerManual/
+		
+	Please Compile as:
+		ant compile
+		
+		or 
+		
+		ant clean
+		ant compile
+		
+TO RUN:
+
+  To run the program, it needs 4 arguments.
+
+	Debug - Debug value - Between 0 - 6
+	NO_OUTPUT(0),PRINT_MANUAL(1),INDEX_ENTRY(2),LIST_FIGURES_ENTRY(3),
+	PAGES_ENTRY(4),GLOSSARY_ENTRY(5),CONSTRUCTOR(6)
+	
+  Please run as: ant run -DDebug=<Debug value>
+						 
+  Example : ant run -DDebug=1
+
+EXTRA CREDIT:
+
+
+
+BIBLIOGRAPHY:
+
+This serves as evidence that we are in no way intending Academic Dishonesty.
+<Soham Rohankar>
+
+  * http://stackoverflow.com/
+  * http://www.tutorialspoint.com/
+  * Head First Design Patterns Book
+
+ACKNOWLEDGEMENT:
+
+

@@ -1,0 +1,57 @@
+<html>
+	<head>
+		
+	</head>
+	
+	<body>
+	<!--Javascript code to generate Random strings--> 
+		<script type="text/javascript">
+			var length = 4;	// Length of random characters to append 
+			var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';	// Characters to put in random string
+			var numsRand = '0123456789';
+			// To exclude numbers from string just delete the numbers from chars
+			var no_strings = 100;	// Number of strings to be generated
+				// Function to generate random string
+				
+				document.write("<BR>Data File");
+				document.write("<BR><BR>");
+			function randomString(length, chars) {
+				var result = '';			
+					for (var i = length; i > 0; --i)
+						result += chars[Math.round(Math.random() * (chars.length - 1))];	// code to generate random character
+				return result;
+			}
+			var searchList = ["Song_","Album_","Singer_"];
+			var searchArr = [];
+			var j = 0;
+			// loop to generate given number of strings
+		
+			for(var i = 0; i < no_strings ; i++){
+				var rString = randomString(length, chars);
+				document.writeln("Song_" + rString  + " Album_" + rString + " Singer_" + rString);
+				document.write("<BR>");
+				var rnum = randomString(1,numsRand);
+				if(rnum % 5 == 0 || rnum % 3 == 0)
+					{
+						searchArr[j] = searchList[randomString(1,numsRand) % 3] + rString;
+						if(j == rnum)
+							searchArr[j++] = searchList[randomString(1,numsRand) % 3] + rString;
+						j++;
+					}
+					
+				
+			}
+				document.write("<BR><BR><BR><BR><BR><BR>");	// +j +"   " + rString + "<BR> ");
+				document.write("<BR> Search File");
+				document.write("<BR><BR>");
+			for(var i = 0; i < j ; i++){
+				var rString = randomString(length, chars);
+					document.writeln( searchArr[i] + "<BR>");
+					if( i >= 4 && (j%i == 0 || j%i == 1))
+						document.writeln( searchList[randomString(1,numsRand) % 3] + rString + "_NA" + "<BR>");	
+		
+			}
+		</script>
+	</body>
+
+</html>    
